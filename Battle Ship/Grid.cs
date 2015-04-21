@@ -6,6 +6,5 @@ using System.Threading.Tasks;
 
 namespace Battle_Ship {
     class Grid {
-        String Name { get; set; }
     }
 }
