@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Battle_Ship {
     class Ship {
-        public static String Type = "Ship";
-        public static int Size = 0;
-        public Boolean isHorizontal { get; set; }
-        public String Name { get; set; }
-        public String LocX { get; set; }
-        public int LocY { get; set; }
+        public virtual String Type { get { return "Ship"; } }
+        public virtual int Size { get { return 0; } }
+        public virtual Boolean isHorizontal { get; set; }
+        public virtual String Name { get; set; }
+        public virtual String LocX { get; set; }
+        public virtual int LocY { get; set; }
         
     }
 }

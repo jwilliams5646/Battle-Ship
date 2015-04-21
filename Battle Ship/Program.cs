@@ -35,7 +35,7 @@ namespace Battle_Ship {
             Grid grid = new Grid();
             grid.PrintGrid();
             Console.WriteLine(destroy.LocX);
-            grid.AddDestroyer(destroy, Destroyer.Size);
+            grid.AddShip(destroy);
         }
 
     }

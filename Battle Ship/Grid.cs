@@ -74,33 +74,57 @@ namespace Battle_Ship {
         }
 
 
-        public void AddDestroyer(Destroyer destroy, int size) {
+        public void AddShip(Ship gs) {
             Console.ReadKey();
-            if(isOutOfBounds(destroy, size)) {
-                Console.WriteLine("Your ship is too long to place here");
+            String key = gs.LocX;
+            int index = gs.LocY;
+            int size = gs.Size;
+            bool isHorizontal = gs.isHorizontal;
+            Console.WriteLine(gs.Size + gs.Name);
+            if(isOutOfBounds(key, index, size, isHorizontal)) {
+                Console.WriteLine("Your " + gs.Name + " is too long to place here");
+                return;
+            }
+            if(isAlreadyUsed(key, index, size, isHorizontal)) {
+                Console.WriteLine("Your " + gs.Name + " can't be placed on top of another ship");
                 return;
             }
         }
 
-        private bool isOutOfBounds(Destroyer destroy, int size) {
-            String key = destroy.LocX;
-            int index = destroy.LocY;
-            int indexOfKey = Array.IndexOf(letters, key);
+        private bool isOutOfBounds(String key, int index, int size, bool isHorizontal) {
             Boolean outOfBounds = false;
-            Console.WriteLine(key);
-            Console.WriteLine(indexOfKey);
-            if(destroy.isHorizontal) {
+            if(isHorizontal) {
+                int indexOfKey = Array.IndexOf(letters, key);
                 if(indexOfKey + size > letters.Count() - 1) {
                     outOfBounds = true;
                 }
             }
-
-            if(!destroy.isHorizontal) {
+            if(!isHorizontal) {
                 if(index + size > 10) {
                     outOfBounds = true;
                 }
             }
             return outOfBounds;
+        }
+
+        private bool isAlreadyUsed(string key, int index, int size, bool isHorizontal) {
+            Boolean alreadyUsed = false;
+            if(isHorizontal) {
+                int indexOfKey = Array.IndexOf(letters, key);
+                for(int x = indexOfKey; x < indexOfKey + size; x++) {
+                    if(!TheGrid[letters[x]].ElementAt(index).Equals("*")) {
+                        alreadyUsed = true;
+                    }
+                }
+            }
+            if(!isHorizontal) {
+                for(int x = index; x < index + size; x++) {
+                    if(!TheGrid[key].ElementAt(x).Equals("*")) {
+                        alreadyUsed = true;
+                    }
+                }
+            }
+            return alreadyUsed;
         }
     }
 }
