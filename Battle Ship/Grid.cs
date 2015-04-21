@@ -73,6 +73,31 @@ namespace Battle_Ship {
             }
         }
 
+        public void Shoot(String key, int index) {
+            TheGrid[key][index] = "X";
+        }
+
+        public void Miss(String key, int index) {
+            TheGrid[key][index] = "x";
+        }
+
+        private bool isHit(String key, int index) {
+            bool hit = true;
+            if(TheGrid[key][index].Equals("*")) {
+                Console.WriteLine("You missed!");
+                hit = false;
+            }
+            if(TheGrid[key][index].Equals("X")) {
+                Console.WriteLine("You already hit something here!");
+               hit = false;
+            }
+            if(TheGrid[key][index].Equals("x")) {
+                Console.WriteLine("You missed in the same spot again!");
+                hit = false;
+            }
+            return hit;
+        }
+
 
         public void AddShip(Ship gs) {
             Console.ReadKey();
@@ -82,12 +107,26 @@ namespace Battle_Ship {
             bool isHorizontal = gs.isHorizontal;
             Console.WriteLine(gs.Size + gs.Name);
             if(isOutOfBounds(key, index, size, isHorizontal)) {
-                Console.WriteLine("Your " + gs.Name + " is too long to place here");
+                Console.WriteLine("Your " + gs.Type + " is too long to place here");
                 return;
             }
             if(isAlreadyUsed(key, index, size, isHorizontal)) {
-                Console.WriteLine("Your " + gs.Name + " can't be placed on top of another ship");
+                Console.WriteLine("Your " + gs.Type + " can't be placed on top of another ship");
                 return;
+            }
+            placeShip(gs);
+        }
+
+        private void placeShip(Ship gs) {
+            if(gs.isHorizontal) {
+                int indexOfKey = Array.IndexOf(letters, gs.LocX);
+                for(int x = indexOfKey; x < indexOfKey + gs.Size; x++) {
+                    TheGrid[letters[x]][gs.LocY - 1] = gs.Name;
+                }
+            } else {
+                for(int x = gs.LocY; x < gs.LocY + gs.Size; x++) {
+                    TheGrid[gs.LocX][x] = gs.Name;
+                }
             }
         }
 
@@ -98,8 +137,7 @@ namespace Battle_Ship {
                 if(indexOfKey + size > letters.Count() - 1) {
                     outOfBounds = true;
                 }
-            }
-            if(!isHorizontal) {
+            } else {
                 if(index + size > 10) {
                     outOfBounds = true;
                 }
@@ -112,14 +150,13 @@ namespace Battle_Ship {
             if(isHorizontal) {
                 int indexOfKey = Array.IndexOf(letters, key);
                 for(int x = indexOfKey; x < indexOfKey + size; x++) {
-                    if(!TheGrid[letters[x]].ElementAt(index).Equals("*")) {
+                    if(!TheGrid[letters[x]][index - 1].Equals("*")) {
                         alreadyUsed = true;
                     }
                 }
-            }
-            if(!isHorizontal) {
+            } else {
                 for(int x = index; x < index + size; x++) {
-                    if(!TheGrid[key].ElementAt(x).Equals("*")) {
+                    if(!TheGrid[key][x].Equals("*")) {
                         alreadyUsed = true;
                     }
                 }

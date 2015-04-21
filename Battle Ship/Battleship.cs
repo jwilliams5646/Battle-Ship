@@ -12,5 +12,9 @@ namespace Battle_Ship {
         public override String Name { get; set; }
         public override String LocX { get; set; }
         public override int LocY { get; set; }
+        public override int Life { get; set; }
+        public Battleship() {
+            Life = Size;
+        }
     }
 }

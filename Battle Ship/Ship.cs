@@ -12,6 +12,6 @@ namespace Battle_Ship {
         public virtual String Name { get; set; }
         public virtual String LocX { get; set; }
         public virtual int LocY { get; set; }
-        
+        public virtual int Life { get; set; }        
     }
 }
