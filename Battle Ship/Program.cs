@@ -39,10 +39,7 @@ namespace Battle_Ship {
             constructArray(B);
             String[] C = new String[10];
             constructArray(C);
-            String[] D = new String[10];
-            constructArray(D);
-            String[] E = new String[10];
-            constructArray(E);
+            String[] D = new S 
             String[] F = new String[10];
             constructArray(F);
             String[] G = new String[10];
@@ -65,6 +62,8 @@ namespace Battle_Ship {
             Grid.Add("H", H);
             Grid.Add("I",I);
             Grid.Add("J", J);
+            Console.WriteLine(Grid.Keys.ToString());
+            Console.WriteLine(Grid.Keys.ToString());
             Console.WriteLine(Grid.Keys.ToString());
             Console.WriteLine(Grid.Keys.ToString());
             Console.ReadKey();
