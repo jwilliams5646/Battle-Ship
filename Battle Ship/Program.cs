@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 namespace Battle_Ship {
     class Program {
         static void Main(string[] args) {
+            Menu menu = new Menu();
+            menu.GameMenu();
+            BattleShipPlayer One = new BattleShipPlayer();
+            One.setShipYardGrid();
+            BattleShipPlayer Two = new BattleShipPlayer();
             List<Ship> myTestList = new List<Ship>();
             Grid grid = new Grid();
 
