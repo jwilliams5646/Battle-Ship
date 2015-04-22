@@ -100,7 +100,6 @@ namespace Battle_Ship {
 
 
         public void AddShip(Ship gs) {
-            Console.ReadKey();
             String key = gs.LocX;
             int index = gs.LocY;
             int size = gs.Size;
@@ -124,7 +123,7 @@ namespace Battle_Ship {
                     TheGrid[letters[x]][gs.LocY - 1] = gs.Name;
                 }
             } else {
-                for(int x = gs.LocY; x < gs.LocY + gs.Size; x++) {
+                for(int x = gs.LocY-1; x < gs.LocY-1 + gs.Size; x++) {
                     TheGrid[gs.LocX][x] = gs.Name;
                 }
             }

@@ -36,6 +36,17 @@ namespace Battle_Ship {
             Console.WriteLine("Battleship " + bs.Name + " is created");
             grid.AddShip(bs);
             grid.PrintGrid();
+
+            Submarine s = new Submarine();
+            s.Name = "S";
+            s.LocX = "J";
+            s.LocY = 1;
+            bs.isHorizontal = true;
+            Console.WriteLine("Submarine " + s.Name + " is created");
+            grid.AddShip(s);
+            grid.PrintGrid();
+
+            Console.ReadKey();
         }
 
     }
