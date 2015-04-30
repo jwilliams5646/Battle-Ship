@@ -99,7 +99,7 @@ namespace Battle_Ship {
         }
 
 
-        public void AddShip(Ship gs) {
+        public bool AddShip(Ship gs) {
             String key = gs.LocX;
             int index = gs.LocY;
             int size = gs.Size;
@@ -107,13 +107,14 @@ namespace Battle_Ship {
             Console.WriteLine(gs.Size + gs.Name);
             if(isOutOfBounds(key, index, size, isHorizontal)) {
                 Console.WriteLine("Your " + gs.Type + " is too long to place here");
-                return;
+                return false;
             }
             if(isAlreadyUsed(key, index, size, isHorizontal)) {
                 Console.WriteLine("Your " + gs.Type + " can't be placed on top of another ship");
-                return;
+                return false;
             }
             placeShip(gs);
+            return true;
         }
 
         private void placeShip(Ship gs) {

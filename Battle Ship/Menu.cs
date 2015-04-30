@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Battle_Ship {
     class Menu {
 
-        public void GameMenu() {
-            printCenter("Welcome to Battleship");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            printCenter("Press any key to continue");
+        String GameMenu = Environment.NewLine + Environment.NewLine + "Welcome to Battleship" + Environment.NewLine + Environment.NewLine + "Press any key to continue";
+        String PickShip = Environment.NewLine + Environment.NewLine + "Pick a Ship" + Environment.NewLine + Environment.NewLine;
+
+        public void DisplayGameMenu() {
+            printCenter(GameMenu);
             Console.ReadKey();
+            Console.Clear();
         }
 
         
@@ -28,12 +28,31 @@ namespace Battle_Ship {
         }
 
         internal String PickShipMenu() {
-            printIndent("Pick a ship");
+            printCenter(PickShip);
             printCenter("C = Carrier");
             printCenter("B = Battleship");
             printCenter("D = Destroyer");
             printCenter("S = Submarine");
             return Console.ReadLine();
+            Console.Clear();
+        }
+
+
+        internal Choice PickLocation() {
+            Choice c = new Choice();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            printCenter("Pick a row: ");
+            c.row = Console.ReadLine();
+            printCenter("Pick a column: ");
+            String columnInput = Console.ReadLine();
+            int column;
+            int.TryParse(columnInput, column);
+            c.column = int.TryParse(column);
+
+
+            return c;
         }
     }
 }

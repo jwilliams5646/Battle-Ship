@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battleship.cs" />
-    <Compile Include="BattleShipPlayer.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Carrier.cs" />
     <Compile Include="Choice.cs" />
     <Compile Include="Destroyer.cs" />
