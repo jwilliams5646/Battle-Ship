@@ -8,9 +8,9 @@ namespace Battle_Ship {
     class Program {
         static void Main(string[] args) {
             Menu menu = new Menu();
-            menu.GameMenu();
+            menu.DisplayGameIntro();
+            Console.WriteLine(menu.pickRow());
             Player One = new Player();
-            One.setShipYardGrid();
             Player Two = new Player();
 
             Console.ReadKey();
